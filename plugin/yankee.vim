@@ -16,9 +16,6 @@ if !exists("g:yankee_command")
   elseif filereadable("/usr/bin/pbcopy")
     let g:yankee_command = "pbcopy"
   else
-    echom "Yankee could not find a suitable command to modify clipboard."
-    echom "You can set it manually by having the following in your .vimrc:"
-    echom "  let g:yankee_command = \"some_command\""
     finish
   endif
 endif
