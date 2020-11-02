@@ -13,6 +13,8 @@ let g:yankee_loaded = 1
 if !exists("g:yankee_command")
   if filereadable("/usr/bin/xsel") || filereadable("/usr/local/bin/xsel")
     let g:yankee_command = "xsel -bi"
+  elseif filereadable("/usr/bin/xclip") || filereadable("/usr/local/bin/xclip")
+    let g:yankee_command = "xclip -i"
   elseif filereadable("/usr/bin/pbcopy")
     let g:yankee_command = "pbcopy"
   else
@@ -24,7 +26,7 @@ endif
 " Main {{{
 function! YankeeDoodle()
   if v:event.operator == "y"
-    call system("xsel -bi", join(v:event.regcontents, "\n"))
+    call system(g:yankee_command, join(v:event.regcontents, "\n"))
   endif
 endfunction
 " }}}
